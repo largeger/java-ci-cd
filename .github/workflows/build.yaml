@@ -29,14 +29,29 @@ jobs:
     - name: Run Tests and Generate Coverage
       run: mvn test
 
+    - name: Run SpotBugs
+      run: mvn spotbugs:spotbugs
+
     - name: Upload Javadoc
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: javadoc
         path: target/site/apidocs/
 
     - name: Upload Test Coverage
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: jacoco-report
         path: target/site/jacoco/
+
+    - name: Upload SpotBugs Report
+      uses: actions/upload-artifact@v4
+      with:
+        name: spotbugs-report
+        path: target/spotbugsXml.xml
+
+    - name: Upload JAR
+      uses: actions/upload-artifact@v4
+      with:
+        name: java-ci-cd-jar
+        path: target/*.jar
