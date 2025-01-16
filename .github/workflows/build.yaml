@@ -55,3 +55,9 @@ jobs:
       with:
         name: java-ci-cd-jar
         path: target/*.jar
+
+    - name: Deploy Javadoc to GitHub Pages
+      uses: JamesIves/github-pages-deploy-action@v4
+      with:
+        folder: target/site/apidocs
+        branch: gh-pages
