@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class IBANChecker {
+    public static void main(String[] args) {
+        String iban = "DE227902007600279131";
+        System.out.println("Welcome to the IBAN Checker!");
+        System.out.println("IBAN " + iban + " is " + validate(iban));
+    }
     private static final Map<String, Integer> chars = new HashMap<>();
 
     static {
@@ -56,7 +61,7 @@ public class IBANChecker {
                 convertedIban.append(c);
             }
             if (Character.isLetter(c)) {
-                convertedIban.append(String.valueOf((int) c - 55));
+                convertedIban.append(c - 55);
             }
         }
 
