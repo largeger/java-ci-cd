@@ -2,7 +2,6 @@ pipeline {
     agent any
 
     tools {
-        jdk 'temurin-20'
         maven 'Maven 3.9.9'
     }
 
