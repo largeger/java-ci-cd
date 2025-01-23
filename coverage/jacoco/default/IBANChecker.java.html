@@ -7,16 +7,16 @@ import java.util.List;
  * The IBANChecker class provides a method to validate an IBAN (International Bank Account Number).
  */
 <span class="nc" id="L9">public class IBANChecker {</span>
-<span class="nc" id="L10">    private static final Map&lt;String, Integer&gt; chars = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L10">    private static final Map&lt;String, Integer&gt; chars = new HashMap&lt;&gt;();</span>
 
     static {
-<span class="nc" id="L13">        chars.put(&quot;AT&quot;, 20);</span>
-<span class="nc" id="L14">        chars.put(&quot;BE&quot;, 16);</span>
-<span class="nc" id="L15">        chars.put(&quot;CZ&quot;, 24);</span>
-<span class="nc" id="L16">        chars.put(&quot;DE&quot;, 22);</span>
-<span class="nc" id="L17">        chars.put(&quot;DK&quot;, 18);</span>
-<span class="nc" id="L18">        chars.put(&quot;FR&quot;, 27);</span>
-<span class="nc" id="L19">    }</span>
+<span class="fc" id="L13">        chars.put(&quot;AT&quot;, 20);</span>
+<span class="fc" id="L14">        chars.put(&quot;BE&quot;, 16);</span>
+<span class="fc" id="L15">        chars.put(&quot;CZ&quot;, 24);</span>
+<span class="fc" id="L16">        chars.put(&quot;DE&quot;, 22);</span>
+<span class="fc" id="L17">        chars.put(&quot;DK&quot;, 18);</span>
+<span class="fc" id="L18">        chars.put(&quot;FR&quot;, 27);</span>
+<span class="fc" id="L19">    }</span>
 
     public static void main(String[] args) {
 <span class="nc" id="L22">        String iban = &quot;DE227902007600279131&quot;;</span>
@@ -39,15 +39,15 @@ import java.util.List;
      * @return true if the IBAN is valid, false otherwise
      */
     public static boolean validate(String iban) {
-<span class="nc bnc" id="L42" title="All 2 branches missed.">        if (!checkLength(iban)) {</span>
-<span class="nc" id="L43">            return false;</span>
+<span class="fc bfc" id="L42" title="All 2 branches covered.">        if (!checkLength(iban)) {</span>
+<span class="fc" id="L43">            return false;</span>
         }
 
-<span class="nc" id="L46">        String rearrangedIban = rearrangeIban(iban);</span>
-<span class="nc" id="L47">        String convertedIban = convertToInteger(rearrangedIban);</span>
-<span class="nc" id="L48">        List&lt;String&gt; segments = createSegments(convertedIban);</span>
+<span class="fc" id="L46">        String rearrangedIban = rearrangeIban(iban);</span>
+<span class="fc" id="L47">        String convertedIban = convertToInteger(rearrangedIban);</span>
+<span class="fc" id="L48">        List&lt;String&gt; segments = createSegments(convertedIban);</span>
 
-<span class="nc bnc" id="L50" title="All 2 branches missed.">        return calculate(segments) == 1;</span>
+<span class="fc bfc" id="L50" title="All 2 branches covered.">        return calculate(segments) == 1;</span>
     }
 
     /**
@@ -56,18 +56,18 @@ import java.util.List;
      * @return
      */
     private static int calculate(List&lt;String&gt; segments) {
-<span class="nc" id="L59">        long n = 0;</span>
+<span class="fc" id="L59">        long n = 0;</span>
 
-<span class="nc bnc" id="L61" title="All 2 branches missed.">        for (String segment : segments) {</span>
-<span class="nc bnc" id="L62" title="All 2 branches missed.">            if (segment.length() == 9) {</span>
-<span class="nc" id="L63">                n = Long.parseLong(segment) % 97;</span>
+<span class="fc bfc" id="L61" title="All 2 branches covered.">        for (String segment : segments) {</span>
+<span class="fc bfc" id="L62" title="All 2 branches covered.">            if (segment.length() == 9) {</span>
+<span class="fc" id="L63">                n = Long.parseLong(segment) % 97;</span>
             } else {
-<span class="nc" id="L65">                segment = n + segment;</span>
-<span class="nc" id="L66">                n = Long.parseLong(segment) % 97;</span>
+<span class="fc" id="L65">                segment = n + segment;</span>
+<span class="fc" id="L66">                n = Long.parseLong(segment) % 97;</span>
             }
-<span class="nc" id="L68">        }</span>
+<span class="fc" id="L68">        }</span>
 
-<span class="nc" id="L70">        return (int) n;</span>
+<span class="fc" id="L70">        return (int) n;</span>
     }
 
     /**
@@ -76,8 +76,8 @@ import java.util.List;
      * @return
      */
     private static boolean checkLength(String iban) {
-<span class="nc" id="L79">        String countryCode = iban.substring(0, 2);</span>
-<span class="nc bnc" id="L80" title="All 4 branches missed.">        return chars.containsKey(countryCode) &amp;&amp; chars.get(countryCode) == iban.length();</span>
+<span class="fc" id="L79">        String countryCode = iban.substring(0, 2);</span>
+<span class="fc bfc" id="L80" title="All 4 branches covered.">        return chars.containsKey(countryCode) &amp;&amp; chars.get(countryCode) == iban.length();</span>
     }
 
     /**
@@ -88,19 +88,19 @@ import java.util.List;
      * @return the integer representation of the IBAN
      */
     private static String convertToInteger(String iban) {
-<span class="nc" id="L91">        StringBuilder convertedIban = new StringBuilder();</span>
-<span class="nc" id="L92">        String upperIban = iban.toUpperCase();</span>
+<span class="fc" id="L91">        StringBuilder convertedIban = new StringBuilder();</span>
+<span class="fc" id="L92">        String upperIban = iban.toUpperCase();</span>
 
-<span class="nc bnc" id="L94" title="All 2 branches missed.">        for (char c : upperIban.toCharArray()) {</span>
-<span class="nc bnc" id="L95" title="All 2 branches missed.">            if (Character.isDigit(c)) {</span>
-<span class="nc" id="L96">                convertedIban.append(c);</span>
+<span class="fc bfc" id="L94" title="All 2 branches covered.">        for (char c : upperIban.toCharArray()) {</span>
+<span class="fc bfc" id="L95" title="All 2 branches covered.">            if (Character.isDigit(c)) {</span>
+<span class="fc" id="L96">                convertedIban.append(c);</span>
             }
-<span class="nc bnc" id="L98" title="All 2 branches missed.">            if (Character.isLetter(c)) {</span>
-<span class="nc" id="L99">                convertedIban.append(c - 55);</span>
+<span class="fc bfc" id="L98" title="All 2 branches covered.">            if (Character.isLetter(c)) {</span>
+<span class="fc" id="L99">                convertedIban.append(c - 55);</span>
             }
         }
 
-<span class="nc" id="L103">        return convertedIban.toString();</span>
+<span class="fc" id="L103">        return convertedIban.toString();</span>
     }
 
     /**
@@ -109,19 +109,19 @@ import java.util.List;
      * @return
      */
     private static List&lt;String&gt; createSegments(String iban) {
-<span class="nc" id="L112">        List&lt;String&gt; segments = new ArrayList&lt;&gt;();</span>
-<span class="nc" id="L113">        String remainingIban = iban;</span>
+<span class="fc" id="L112">        List&lt;String&gt; segments = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L113">        String remainingIban = iban;</span>
 
-<span class="nc" id="L115">        segments.add(remainingIban.substring(0, 9));</span>
-<span class="nc" id="L116">        remainingIban = remainingIban.substring(9);</span>
+<span class="fc" id="L115">        segments.add(remainingIban.substring(0, 9));</span>
+<span class="fc" id="L116">        remainingIban = remainingIban.substring(9);</span>
 
-<span class="nc bnc" id="L118" title="All 2 branches missed.">        while (remainingIban.length() &gt;= 9) {</span>
-<span class="nc" id="L119">            segments.add(remainingIban.substring(0, 7));</span>
-<span class="nc" id="L120">            remainingIban = remainingIban.substring(7);</span>
+<span class="fc bfc" id="L118" title="All 2 branches covered.">        while (remainingIban.length() &gt;= 9) {</span>
+<span class="fc" id="L119">            segments.add(remainingIban.substring(0, 7));</span>
+<span class="fc" id="L120">            remainingIban = remainingIban.substring(7);</span>
         }
 
-<span class="nc" id="L123">        segments.add(remainingIban);</span>
-<span class="nc" id="L124">        return segments;</span>
+<span class="fc" id="L123">        segments.add(remainingIban);</span>
+<span class="fc" id="L124">        return segments;</span>
     }
 
     /**
@@ -130,7 +130,7 @@ import java.util.List;
      * @return
      */
     private static String rearrangeIban(String iban) {
-<span class="nc" id="L133">        return iban.substring(4) + iban.substring(0, 4);</span>
+<span class="fc" id="L133">        return iban.substring(4) + iban.substring(0, 4);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>
