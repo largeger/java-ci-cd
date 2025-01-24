@@ -69,7 +69,7 @@ jobs:
           </head>
           <body>
               <div class="container">
-                  <h1>Project Documentation</h1>
+                  <h1>IBAN Validator Documentation</h1>
                   <a href="./javadoc/apidocs">📚 JavaDoc API Documentation</a>
                   <a href="./coverage/jacoco">📊 Test Coverage Report</a>
                   <a href="./spotbugs/report.xml">🐛 SpotBugs Analysis Report</a>
